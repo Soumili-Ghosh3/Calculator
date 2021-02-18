@@ -253,10 +253,10 @@
             android:layout_row="4"
             android:layout_column="3"
             android:layout_columnWeight="1"
-            android:background="@color/orange"
             android:fontFamily="sans-serif"
             android:text="="
             android:textColor="@color/white"
+            android:background="@color/orange"
             android:textSize="25sp" />
 
     </GridLayout>

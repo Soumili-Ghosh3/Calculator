@@ -15,7 +15,7 @@
         android:background="@color/black"
         android:padding="10dp"
         android:fontFamily="sans-serif"
-        android:text="12345" />
+        android:text="" />
 
     <TextView
         android:id="@+id/tvOutput"
@@ -27,6 +27,6 @@
         android:background="@color/black"
         android:padding="10dp"
         android:fontFamily="sans-serif"
-        android:text="12345" />
+        android:text="" />
 
 </LinearLayout>
