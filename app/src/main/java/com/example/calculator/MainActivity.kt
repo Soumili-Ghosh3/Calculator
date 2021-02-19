@@ -1,22 +1,17 @@
 package com.example.calculator
 
-import android.content.Context
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.faendir.rhino_android.RhinoAndroidHelper
-import org.mozilla.javascript.ImporterTopLevel
-import org.mozilla.javascript.Scriptable
+import net.objecthunter.exp4j.ExpressionBuilder
 
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var tvOutput: TextView
     lateinit var tvInput: TextView
-    private var context: Context? = null
-    private var scope: Scriptable? = null
-    private var rhinoAndroidHelper: RhinoAndroidHelper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,98 +48,82 @@ class MainActivity : AppCompatActivity() {
 
         button0.setOnClickListener()
         {
-            tvInput.append(tvOutput.text)
             tvInput.append("0")
             tvOutput.text=""
         }
         button1.setOnClickListener()
         {
-            tvInput.append(tvOutput.text)
             tvInput.append("1")
             tvOutput.text=""
         }
         button2.setOnClickListener()
         {
-            tvInput.append(tvOutput.text)
             tvInput.append("2")
             tvOutput.text=""
         }
         button3.setOnClickListener()
         {
-            tvInput.append(tvOutput.text)
             tvInput.append("3")
             tvOutput.text=""
         }
         button4.setOnClickListener()
         {
-            tvInput.append(tvOutput.text)
             tvInput.append("4")
             tvOutput.text=""
         }
         button5.setOnClickListener()
         {
-            tvInput.append(tvOutput.text)
             tvInput.append("5")
             tvOutput.text=""
         }
         button6.setOnClickListener()
         {
-            tvInput.append(tvOutput.text)
             tvInput.append("6")
             tvOutput.text=""
         }
         button7.setOnClickListener()
         {
-            tvInput.append(tvOutput.text)
             tvInput.append("7")
             tvOutput.text=""
         }
         button8.setOnClickListener()
         {
-            tvInput.append(tvOutput.text)
             tvInput.append("8")
             tvOutput.text=""
         }
         button9.setOnClickListener()
         {
-            tvInput.append(tvOutput.text)
             tvInput.append("9")
             tvOutput.text=""
         }
         buttonplus.setOnClickListener()
         {
-            tvInput.append(tvOutput.text)
             tvInput.append("+")
             tvOutput.text=""
         }
         buttonpercent.setOnClickListener()
         {
-            tvInput.append(tvOutput.text)
-            tvInput.append("%")
+            tvInput.append("/100")
             tvOutput.text=""
         }
         buttondiv.setOnClickListener()
         {
-            tvInput.append(tvOutput.text)
-            tvInput.append("÷")
+            tvInput.append("/")
             tvOutput.text=""
         }
         buttonsub.setOnClickListener()
         {
-            tvInput.append(tvOutput.text)
             tvInput.append("-")
             tvOutput.text=""
         }
         buttondot.setOnClickListener()
         {
-            tvInput.append(tvOutput.text)
             tvInput.append(".")
             tvOutput.text=""
         }
         buttonmul.setOnClickListener()
         {
-            tvInput.append(tvOutput.text)
-            tvInput.append("×")
+            tvInput.append("*")
             tvOutput.text=""
         }
         var checkedbracket: Boolean = false
@@ -152,38 +131,32 @@ class MainActivity : AppCompatActivity() {
         {
             if(checkedbracket)
             {
-                tvInput.append(tvOutput.text)
                 tvInput.append(")")
                 tvOutput.text=""
                 checkedbracket = false
             }
             else{
-                tvInput.append(tvOutput.text)
                 tvInput.append("(")
                 tvOutput.text=""
                 checkedbracket = true
             }
         }
 
+
         buttonequal.setOnClickListener()
         {
-            val p: String = tvInput.text.toString()
+            val tvInput1 = ExpressionBuilder(tvInput.text.toString()).build()
 
-
-            rhinoAndroidHelper = RhinoAndroidHelper(this)
-            context = rhinoAndroidHelper.enterContext()
-            context.setOptimizationLevel(1)
-            scope = ImporterTopLevel(context)
-            var finalresult: String = ""
-            try{
-                val scriptable: Scriptable = context.initStandardObjects()
-                context.evaluateString(scriptable, p, "javascript", 1, null).toString()
-            }catch (e: Exception){
-                finalresult = "0"
+            try {
+                 tvOutput.text = tvInput1.evaluate().toString()
+            }catch (e:Exception){
+                Toast.makeText(this,e.message, Toast.LENGTH_LONG).show()
+                tvOutput.text="0"
             }
-            tvOutput.text = finalresult
         }
 
     }
 }
+
+
 
