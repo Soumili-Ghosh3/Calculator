@@ -3,4 +3,4 @@ A Simple Calculator is made which can perform the simple operations like additio
 
 
 # Screenshots :camera:
-<img src="https://github.com/Soumili-Ghosh3/Calculator/blob/master/app/Screenshots/Calculator_pic.PNG" width="300" height="600">
+<img src="https://github.com/Soumili-Ghosh3/Calculator/blob/master/app/Screenshots/Calculator_pic.PNG" width="250" height="500">
