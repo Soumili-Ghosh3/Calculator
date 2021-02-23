@@ -1,4 +1,4 @@
-# Calculator App 
+# Calculator App :white_flower:
 A Simple Calculator is made which can perform the simple operations like addition, subtraction, multiplication and division .
 
 
